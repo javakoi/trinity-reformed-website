@@ -557,8 +557,8 @@ body {
 }
 
 .footer-logo-img {
-    width: 30px;
-    height: 30px;
+    height: 40px;
+    width: auto;
     object-fit: contain;
 }
 

@@ -717,6 +717,38 @@ body {
     font-style: italic;
 }
 
+/* PDF Container */
+.pdf-container {
+    margin: 2rem 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pdf-container embed {
+    display: block;
+    width: 100%;
+    min-height: 800px;
+}
+
+.pdf-fallback {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.pdf-download-link {
+    color: #d2691e;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.pdf-download-link:hover {
+    text-decoration: underline;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-container {

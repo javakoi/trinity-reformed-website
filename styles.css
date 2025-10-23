@@ -269,10 +269,7 @@ body {
 }
 
 .about-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 3rem;
-    align-items: center;
+    display: block;
 }
 
 .about-text p {
@@ -296,7 +293,7 @@ body {
 
 .distinctives-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
 
@@ -368,10 +365,7 @@ body {
 }
 
 .worship-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 3rem;
-    align-items: start;
+    display: block;
 }
 
 .service-details {
@@ -829,6 +823,10 @@ body {
     }
 
     .beliefs-content {
+        grid-template-columns: 1fr;
+    }
+
+    .distinctives-content {
         grid-template-columns: 1fr;
     }
 

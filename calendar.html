@@ -3,16 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Church Calendar - Trinity Reformed Church</title>
+    <title>Calendar - Trinity Reformed Church</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
-    <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="android-chrome-192x192.png" type="image/png" sizes="192x192">
-    <link rel="icon" href="android-chrome-512x512.png" type="image/png" sizes="512x512">
+    <!-- Favicon for all browsers -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+    
+    <!-- Fallback favicon -->
+    <link rel="icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
+    
+    <!-- Apple Touch Icon for Safari -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <!-- Safari specific -->
+    <link rel="mask-icon" href="favicon.ico" color="#d2691e">
+    
+    <!-- Web App Manifest -->
     <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Microsoft Tiles -->
     <meta name="msapplication-TileColor" content="#d2691e">
+    <meta name="msapplication-TileImage" content="android-chrome-192x192.png">
 </head>
 <body>
     <!-- Navigation -->
@@ -44,9 +60,11 @@
                         <li><a href="liturgy.html">The Liturgy</a></li>
                         <li><a href="confessions.html">The Confessions / Catechism</a></li>
                         <li><a href="creeds.html">The Ecumenical Creeds</a></li>
-                        <li><a href="calendar.html">The Church Calendar</a></li>
-                        <li><a href="more-info.html">More Info</a></li>
+                        <li><a href="more-info.html">More Information</a></li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="calendar.html" class="nav-link">Calendar</a>
                 </li>
                 <li class="nav-item">
                     <a href="index.html#contact" class="nav-link">Contact</a>
@@ -61,107 +79,89 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <div class="main-content">
         <div class="container">
+            <!-- Page Header -->
             <div class="page-header">
                 <img src="Church symbol.png" alt="Church Symbol" class="page-icon">
-                <h1>The Church Calendar</h1>
-            </div>
-            
-            <div class="content-section">
-                <h2>What is the Church Calendar?</h2>
-                <p>The Church Calendar, also known as the Liturgical Year or Christian Year, is a cycle of seasons and holy days that structures the worship and life of the Christian church. It follows the life of Christ from his birth to his resurrection and ascension, and includes the coming of the Holy Spirit and the anticipation of Christ's return. The calendar helps us remember and celebrate the great events of salvation history throughout the year.</p>
+                <h1>Trinity Reformed Church Events</h1>
             </div>
 
-            <div class="content-section">
-                <h2>The Seasons of the Church Year</h2>
-                
-                <h3>Advent (Late November - December 24)</h3>
-                <p>Advent is the season of preparation for the coming of Christ. It begins four Sundays before Christmas and marks the start of the church year. During Advent, we prepare our hearts for both the celebration of Christ's first coming at Christmas and his second coming at the end of time. The color of Advent is purple, symbolizing penitence and preparation.</p>
-                
-                <h3>Christmas (December 25 - January 5)</h3>
-                <p>Christmas celebrates the birth of Jesus Christ, the incarnation of God in human flesh. This season lasts for twelve days, ending on Epiphany. The color of Christmas is white, symbolizing joy and purity.</p>
-                
-                <h3>Epiphany (January 6)</h3>
-                <p>Epiphany celebrates the manifestation of Christ to the Gentiles, particularly the visit of the Magi. It reminds us that Christ came not just for the Jews, but for all people. The color of Epiphany is white.</p>
-                
-                <h3>Ordinary Time (January 7 - Ash Wednesday)</h3>
-                <p>This period between Epiphany and Lent is called "Ordinary Time" because it is not part of a major season. It focuses on the life and ministry of Jesus. The color is green, symbolizing growth and life.</p>
-                
-                <h3>Lent (Ash Wednesday - Holy Saturday)</h3>
-                <p>Lent is a season of penitence and preparation for Easter. It lasts for forty days (not counting Sundays) and begins on Ash Wednesday. During Lent, we focus on repentance, fasting, and spiritual discipline. The color of Lent is purple, symbolizing penitence and royalty.</p>
-                
-                <h3>Holy Week (Palm Sunday - Holy Saturday)</h3>
-                <p>Holy Week is the most sacred week of the church year, commemorating the final week of Jesus' earthly ministry. It includes:</p>
-                <ul>
-                    <li><strong>Palm Sunday:</strong> Jesus' triumphal entry into Jerusalem</li>
-                    <li><strong>Maundy Thursday:</strong> The Last Supper and institution of the Lord's Supper</li>
-                    <li><strong>Good Friday:</strong> The crucifixion of Jesus</li>
-                    <li><strong>Holy Saturday:</strong> The day Jesus' body lay in the tomb</li>
-                </ul>
-                
-                <h3>Easter (Easter Sunday - Pentecost)</h3>
-                <p>Easter is the most important celebration of the Christian year, commemorating the resurrection of Jesus Christ from the dead. The Easter season lasts for fifty days, ending with Pentecost. The color of Easter is white, symbolizing joy and victory.</p>
-                
-                <h3>Pentecost (50 days after Easter)</h3>
-                <p>Pentecost celebrates the coming of the Holy Spirit upon the apostles and the birth of the Christian church. The color of Pentecost is red, symbolizing the fire of the Holy Spirit.</p>
-                
-                <h3>Ordinary Time (After Pentecost - Advent)</h3>
-                <p>This long season focuses on the growth and mission of the church. It emphasizes the work of the Holy Spirit in the life of believers and the mission of the church in the world. The color is green, symbolizing growth and life.</p>
+            <!-- Admin Panel (Hidden by default) -->
+            <div id="admin-panel" class="admin-panel" style="display: none;">
+                <div class="content-section">
+                    <h2>Admin Panel - Manage Events</h2>
+                    <form id="event-form">
+                        <div class="form-group">
+                            <label for="event-title">Event Title</label>
+                            <input type="text" id="event-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Date</label>
+                            <input type="date" id="event-date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-time">Time</label>
+                            <input type="time" id="event-time" name="time">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-location">Location</label>
+                            <input type="text" id="event-location" name="location">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-description">Description</label>
+                            <textarea id="event-description" name="description" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Add Event</button>
+                        <button type="button" id="cancel-edit" class="submit-btn" style="background-color: #666; margin-left: 10px;">Cancel Edit</button>
+                    </form>
+                </div>
             </div>
 
-            <div class="content-section">
-                <h2>Special Days and Festivals</h2>
-                
-                <h3>All Saints' Day (November 1)</h3>
-                <p>All Saints' Day commemorates all the saints, known and unknown, who have gone before us in the faith. It reminds us of our connection to the great cloud of witnesses and the communion of saints.</p>
-                
-                <h3>Reformation Day (October 31)</h3>
-                <p>Reformation Day commemorates the beginning of the Protestant Reformation when Martin Luther posted his 95 Theses in 1517. It celebrates the recovery of the gospel and the authority of Scripture.</p>
-                
-                <h3>Thanksgiving Day</h3>
-                <p>Thanksgiving Day is a time to give thanks to God for his many blessings. While not part of the traditional church calendar, it is an important day of gratitude and worship.</p>
+            <!-- Admin Controls -->
+            <div class="admin-controls">
+                <button id="admin-toggle" class="submit-btn">Admin Login</button>
+                <button id="add-event-btn" class="submit-btn" style="display: none;">Add New Event</button>
             </div>
 
-            <div class="content-section">
-                <h2>The Purpose of the Church Calendar</h2>
-                <p>The Church Calendar serves several important purposes:</p>
-                <ul>
-                    <li>It structures our worship around the life of Christ</li>
-                    <li>It helps us remember and celebrate the great events of salvation history</li>
-                    <li>It provides a rhythm for the spiritual life</li>
-                    <li>It connects us with the historic Christian tradition</li>
-                    <li>It helps us focus on different aspects of the Christian faith throughout the year</li>
-                    <li>It unites us with Christians around the world who follow the same calendar</li>
-                </ul>
+            <!-- Events Display -->
+            <div class="events-container">
+                <div class="content-section">
+                    <h2>Upcoming Events</h2>
+                    <div id="events-list">
+                        <!-- Events will be dynamically loaded here -->
+                    </div>
+                </div>
             </div>
 
-
+            <!-- Church Information -->
             <div class="content-section">
-                <h2>Living the Church Calendar</h2>
-                <p>As we follow the Church Calendar, we are invited to:</p>
-                <ul>
-                    <li>Prepare our hearts during Advent for the coming of Christ</li>
-                    <li>Celebrate with joy the birth of our Savior at Christmas</li>
-                    <li>Reflect on our need for repentance during Lent</li>
-                    <li>Rejoice in the victory of Christ over sin and death at Easter</li>
-                    <li>Be filled with the power of the Holy Spirit at Pentecost</li>
-                    <li>Grow in faith and service during Ordinary Time</li>
-                </ul>
+                <h2>Our Church</h2>
+                <div class="church-info">
+                    <div class="info-item">
+                        <h3>Meeting Location</h3>
+                        <p>Hillside United Methodist Church<br>
+                        3739 US Hwy 80<br>
+                        Phenix City, AL 36870</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Service Time</h3>
+                        <p>Sundays at 4:00 PM (ET)</p>
+                    </div>
+                </div>
             </div>
 
+            <!-- Follow Us Section -->
             <div class="content-section">
-                <h2>Further Reading</h2>
-                <p>For more information on the Church Calendar and its significance in Christian worship, we recommend these resources:</p>
-                <ul>
-                    <li><a href="https://pastor.trinity-pres.net/articles" target="_blank">Trinity Presbyterian Articles</a> - Theological essays on the Church Calendar and liturgical time</li>
-                    <li><a href="https://theopolisinstitute.com/search/?s=church+calendar" target="_blank">Theopolis Institute</a> - Resources on the Church Calendar and sanctifying time</li>
-                    <li>The Church Calendar, An Interview with Covenant Radio, Gregg Strawbridge</li>
-                    <li>Vestments & Church Calendar by Michael Hansen</li>
-                </ul>
+                <h2>Follow</h2>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/p/Trinity-Reformed-Church-100086172589789/" target="_blank" class="social-link facebook-link">
+                        <span class="social-icon facebook-icon">f</span> Facebook
+                    </a>
+                </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -173,14 +173,19 @@
                     </a>
                 </div>
                 <div class="footer-info">
-                    <p>&copy; 2024 Trinity Reformed Church. All rights reserved.</p>
                     <p>Hillside United Methodist Church | 3739 US Hwy 80, Phenix City, AL 36870</p>
                     <p>Member of the <a href="https://crechurches.org" target="_blank" class="crec-link">Communion of Reformed Evangelical Churches</a></p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/p/Trinity-Reformed-Church-100086172589789/" target="_blank" class="social-link facebook-link">
+                            <span class="social-icon facebook-icon">f</span> Follow us on Facebook
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="calendar.js"></script>
 </body>
 </html>

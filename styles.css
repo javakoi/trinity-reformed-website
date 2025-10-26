@@ -1282,9 +1282,10 @@ body {
     }
     
     .event-type-indicator {
-        font-size: 0.6rem;
-        padding: 0.1rem 0.3rem;
+        font-size: 0.55rem;
+        padding: 0.1rem 0.2rem;
         top: 1.5rem;
+        line-height: 1.2;
     }
     
     .more-events-indicator {

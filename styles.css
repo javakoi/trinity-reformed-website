@@ -952,33 +952,239 @@ body {
     text-align: center;
 }
 
-.events-container {
+/* Monthly Calendar Grid */
+.calendar-container {
     margin-bottom: 2rem;
 }
 
-.event-item {
-    background-color: white;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #d2691e;
-}
-
-.event-header {
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
 }
 
-.event-header h3 {
-    color: #d2691e;
+.calendar-header h2 {
     margin: 0;
-    font-size: 1.3rem;
+    color: #d2691e;
+    font-size: 1.8rem;
 }
 
-.event-admin-controls {
+.calendar-nav-btn {
+    background-color: #d2691e;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-nav-btn:hover {
+    background-color: #b8860b;
+}
+
+.calendar-grid {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #d2691e;
+    color: white;
+}
+
+.weekday {
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.weekday:last-child {
+    border-right: none;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background-color: #ddd;
+}
+
+.calendar-day {
+    min-height: 100px;
+    padding: 0.5rem;
+    background-color: white;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.calendar-day:hover {
+    background-color: #f8f9fa;
+}
+
+.calendar-day.today {
+    background-color: #fff3cd;
+    border-color: #d2691e;
+}
+
+.calendar-day.has-events {
+    background-color: #e8f5e8;
+    border-color: #28a745;
+}
+
+.calendar-day.has-events:hover {
+    background-color: #d4edda;
+}
+
+.empty-day {
+    background-color: #f8f9fa;
+    cursor: default;
+}
+
+.empty-day:hover {
+    background-color: #f8f9fa;
+}
+
+.event-type-indicator {
+    position: absolute;
+    top: 2rem;
+    left: 0.3rem;
+    right: 0.3rem;
+    color: white;
+    border-radius: 4px;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.2rem;
+}
+
+.event-type-indicator.fellowship {
+    background-color: #28a745;
+}
+
+.event-type-indicator.service {
+    background-color: #007bff;
+}
+
+.event-type-indicator.special {
+    background-color: #d2691e;
+}
+
+.more-events-indicator {
+    position: absolute;
+    left: 0.3rem;
+    right: 0.3rem;
+    color: #666;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Day Events Modal */
+.day-events-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #d2691e;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.day-event-item {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    border-left: 4px solid #d2691e;
+    position: relative;
+}
+
+.event-type-badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.event-type-badge.fellowship {
+    background-color: #28a745;
+}
+
+.event-type-badge.service {
+    background-color: #007bff;
+}
+
+.event-type-badge.special {
+    background-color: #d2691e;
+}
+
+.day-event-actions {
+    margin-top: 0.5rem;
     display: flex;
     gap: 0.5rem;
 }
@@ -1010,9 +1216,10 @@ body {
     background-color: #c82333;
 }
 
-.event-details p {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
+.modal-footer {
+    padding: 1rem;
+    border-top: 1px solid #eee;
+    text-align: right;
 }
 
 .church-info {
@@ -1042,15 +1249,47 @@ body {
 
 /* Mobile Calendar Styles */
 @media (max-width: 768px) {
-    .event-header {
+    .calendar-header {
         flex-direction: column;
-        align-items: flex-start;
         gap: 1rem;
+        text-align: center;
     }
     
-    .event-admin-controls {
-        width: 100%;
-        justify-content: flex-end;
+    .calendar-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .calendar-nav-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 1rem;
+    }
+    
+    .calendar-day {
+        min-height: 80px;
+        padding: 0.3rem;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+    
+    .weekday {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.9rem;
+    }
+    
+    .event-type-indicator {
+        font-size: 0.6rem;
+        padding: 0.1rem 0.3rem;
+        top: 1.5rem;
+    }
+    
+    .more-events-indicator {
+        font-size: 0.6rem;
+        padding: 0.1rem 0.3rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
     }
     
     .church-info {

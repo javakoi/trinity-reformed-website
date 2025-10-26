@@ -87,6 +87,31 @@
                 <h1>Trinity Reformed Church Events</h1>
             </div>
 
+            <!-- Calendar Display -->
+            <div class="calendar-container">
+                <div class="content-section">
+                    <div class="calendar-header">
+                        <button id="prev-month" class="calendar-nav-btn">&lt;</button>
+                        <h2 id="current-month-year">January 2024</h2>
+                        <button id="next-month" class="calendar-nav-btn">&gt;</button>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-weekdays">
+                            <div class="weekday">Sun</div>
+                            <div class="weekday">Mon</div>
+                            <div class="weekday">Tue</div>
+                            <div class="weekday">Wed</div>
+                            <div class="weekday">Thu</div>
+                            <div class="weekday">Fri</div>
+                            <div class="weekday">Sat</div>
+                        </div>
+                        <div id="calendar-days" class="calendar-days">
+                            <!-- Calendar days will be dynamically generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Admin Panel (Hidden by default) -->
             <div id="admin-panel" class="admin-panel" style="display: none;">
                 <div class="content-section">
@@ -109,28 +134,22 @@
                             <input type="text" id="event-location" name="location">
                         </div>
                         <div class="form-group">
+                            <label for="event-type">Event Type</label>
+                            <select id="event-type" name="type" required>
+                                <option value="">Select Event Type</option>
+                                <option value="fellowship">Fellowship Meal</option>
+                                <option value="service">Lord's Day Service</option>
+                                <option value="special">Special Event</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="event-description">Description</label>
                             <textarea id="event-description" name="description" rows="4"></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Add Event</button>
-                        <button type="button" id="cancel-edit" class="submit-btn" style="background-color: #666; margin-left: 10px;">Cancel Edit</button>
+                        <button type="button" id="cancel-form" class="submit-btn" style="background-color: #666; margin-left: 10px;">Cancel</button>
+                        <button type="button" id="cancel-edit" class="submit-btn" style="background-color: #666; margin-left: 10px; display: none;">Cancel Edit</button>
                     </form>
-                </div>
-            </div>
-
-            <!-- Admin Controls -->
-            <div class="admin-controls">
-                <button id="admin-toggle" class="submit-btn">Admin Login</button>
-                <button id="add-event-btn" class="submit-btn" style="display: none;">Add New Event</button>
-            </div>
-
-            <!-- Events Display -->
-            <div class="events-container">
-                <div class="content-section">
-                    <h2>Upcoming Events</h2>
-                    <div id="events-list">
-                        <!-- Events will be dynamically loaded here -->
-                    </div>
                 </div>
             </div>
 
@@ -159,6 +178,12 @@
                         <span class="social-icon facebook-icon">f</span> Facebook
                     </a>
                 </div>
+            </div>
+
+            <!-- Admin Controls (Bottom of page) -->
+            <div class="admin-controls">
+                <button id="admin-toggle" class="submit-btn">Admin Login</button>
+                <button id="add-event-btn" class="submit-btn" style="display: none;">Add New Event</button>
             </div>
         </div>
     </div>

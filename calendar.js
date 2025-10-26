@@ -265,14 +265,18 @@ class CalendarManager {
         localStorage.setItem('churchEvents', JSON.stringify(this.events));
         
         // Download events.json file for admin to upload to repository
-        const dataStr = JSON.stringify(this.events, null, 2);
-        const dataBlob = new Blob([dataStr], { type: 'application/json' });
-        const url = URL.createObjectURL(dataBlob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'events.json';
-        link.click();
-        URL.revokeObjectURL(url);
+        setTimeout(() => {
+            const dataStr = JSON.stringify(this.events, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'events.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }, 500);
     }
 
     renderCalendar() {

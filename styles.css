@@ -1097,11 +1097,12 @@ body {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 3px;
-    padding: 0.1rem 0.3rem;
+    padding: 0.05rem 0.3rem;
     font-size: 0.6rem;
     font-weight: bold;
     text-align: center;
     font-style: italic;
+    line-height: 1.2;
 }
 
 /* Day Events Modal */

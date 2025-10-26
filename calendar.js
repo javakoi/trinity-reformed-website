@@ -1,11 +1,40 @@
 // Calendar functionality with monthly grid view
 class CalendarManager {
     constructor() {
-        this.events = JSON.parse(localStorage.getItem('churchEvents')) || [];
+        this.events = [];
         this.isAdmin = false;
         this.editingEventId = null;
         this.currentDate = new Date();
+        this.eventsLoaded = false;
         
+        this.loadEvents();
+    }
+
+    async loadEvents() {
+        try {
+            // Try to load from localStorage first (for admin edits)
+            const localEvents = JSON.parse(localStorage.getItem('churchEvents')) || [];
+            
+            // Also try to load from events.json
+            const response = await fetch('events.json');
+            if (response.ok) {
+                const jsonEvents = await response.json();
+                // Merge: use localStorage if it exists and is newer, otherwise use JSON
+                if (localEvents.length > 0) {
+                    this.events = localEvents;
+                } else {
+                    this.events = jsonEvents;
+                }
+            } else {
+                // If events.json doesn't exist, use localStorage
+                this.events = localEvents;
+            }
+        } catch (error) {
+            // If fetch fails, just use localStorage
+            this.events = JSON.parse(localStorage.getItem('churchEvents')) || [];
+        }
+        
+        this.eventsLoaded = true;
         this.init();
     }
 
@@ -234,6 +263,16 @@ class CalendarManager {
 
     saveEvents() {
         localStorage.setItem('churchEvents', JSON.stringify(this.events));
+        
+        // Download events.json file for admin to upload to repository
+        const dataStr = JSON.stringify(this.events, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'events.json';
+        link.click();
+        URL.revokeObjectURL(url);
     }
 
     renderCalendar() {

@@ -1095,9 +1095,9 @@ body {
     color: #666;
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
-    border-radius: 4px;
-    padding: 0.2rem 0.4rem;
-    font-size: 0.7rem;
+    border-radius: 3px;
+    padding: 0.1rem 0.3rem;
+    font-size: 0.6rem;
     font-weight: bold;
     text-align: center;
     font-style: italic;
@@ -1283,8 +1283,8 @@ body {
     }
     
     .more-events-indicator {
-        font-size: 0.6rem;
-        padding: 0.1rem 0.3rem;
+        font-size: 0.55rem;
+        padding: 0.1rem 0.2rem;
     }
     
     .modal-content {

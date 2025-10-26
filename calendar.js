@@ -391,12 +391,22 @@ class CalendarManager {
             `;
         }).join('');
 
+        // Format date for display
+        const dateParts = dateString.split('-');
+        const date = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
+        const formattedDate = date.toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+
         const modal = document.createElement('div');
         modal.className = 'day-events-modal';
         modal.innerHTML = `
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Events for ${new Date(dateString).toLocaleDateString()}</h3>
+                    <h3>Events for ${formattedDate}</h3>
                     <button class="modal-close">&times;</button>
                 </div>
                 <div class="modal-body">

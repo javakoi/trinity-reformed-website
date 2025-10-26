@@ -343,18 +343,19 @@ class CalendarManager {
                     eventIndicator.className = `event-type-indicator ${event.type || 'special'}`;
                     eventIndicator.style.top = `${2 + (index * 1.5)}rem`; // Stack events vertically
                     
-                    // Set text based on event type
+                    // Set text based on event type (use abbreviations for mobile)
                     let typeText = '';
+                    const isMobile = window.innerWidth < 768;
                     switch(event.type) {
                         case 'fellowship':
-                            typeText = 'Fellowship Meal';
+                            typeText = isMobile ? 'Fellowship' : 'Fellowship Meal';
                             break;
                         case 'service':
-                            typeText = "Lord's Day Service";
+                            typeText = isMobile ? "Lord's Day" : "Lord's Day Service";
                             break;
                         case 'special':
                         default:
-                            typeText = 'Special Event';
+                            typeText = isMobile ? 'Special' : 'Special Event';
                             break;
                     }
                     

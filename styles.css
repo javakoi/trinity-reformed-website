@@ -1021,7 +1021,7 @@ body {
 }
 
 .calendar-day {
-    min-height: 100px;
+    min-height: 120px;
     padding: 0.5rem;
     background-color: white;
     border: 1px solid #eee;
@@ -1096,15 +1096,11 @@ body {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 4px;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.85rem;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.7rem;
     font-weight: bold;
     text-align: center;
     font-style: italic;
-    min-height: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* Day Events Modal */
@@ -1269,7 +1265,7 @@ body {
     }
     
     .calendar-day {
-        min-height: 80px;
+        min-height: 100px;
         padding: 0.3rem;
         font-size: 0.9rem;
         font-weight: bold;

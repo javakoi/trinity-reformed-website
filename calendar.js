@@ -321,11 +321,13 @@ class CalendarManager {
 
                 // Add "more events" indicator if there are additional events
                 if (hasMoreEvents) {
+                    console.log(`Adding more events indicator for ${dayEvents.length} total events`);
                     const moreIndicator = document.createElement('div');
                     moreIndicator.className = 'more-events-indicator';
                     moreIndicator.style.top = `${2 + (maxVisibleEvents * 1.5)}rem`;
                     moreIndicator.textContent = `+${dayEvents.length - maxVisibleEvents} more`;
                     dayElement.appendChild(moreIndicator);
+                    console.log('More events indicator added:', moreIndicator);
                 }
 
                 // Add click handler for all users to see events

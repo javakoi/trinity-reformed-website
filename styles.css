@@ -1092,15 +1092,15 @@ body {
     position: absolute;
     left: 0.3rem;
     right: 0.3rem;
-    color: #666;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
+    color: #d2691e;
+    background-color: #fff3cd;
+    border: 2px solid #d2691e;
     border-radius: 4px;
-    padding: 0.2rem 0.4rem;
-    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
     font-weight: bold;
     text-align: center;
-    font-style: italic;
+    z-index: 10;
 }
 
 /* Day Events Modal */

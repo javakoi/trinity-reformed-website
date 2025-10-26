@@ -1074,9 +1074,6 @@ body {
     font-weight: bold;
     text-align: center;
     margin-bottom: 0.2rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .event-type-indicator.fellowship {
@@ -1282,10 +1279,9 @@ body {
     }
     
     .event-type-indicator {
-        font-size: 0.55rem;
-        padding: 0.1rem 0.2rem;
+        font-size: 0.6rem;
+        padding: 0.1rem 0.3rem;
         top: 1.5rem;
-        line-height: 1.2;
     }
     
     .more-events-indicator {

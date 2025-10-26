@@ -1091,7 +1091,8 @@ body {
 .more-events-indicator {
     position: absolute;
     left: 0.3rem;
-    right: 0.3rem;
+    width: fit-content;
+    max-width: calc(100% - 0.6rem);
     color: #666;
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;

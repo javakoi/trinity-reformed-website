@@ -743,6 +743,40 @@ body {
     text-decoration: underline;
 }
 
+/* Music Page Styles */
+.song-links-container {
+    margin-top: 1rem;
+}
+
+.song-item {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #d2691e;
+}
+
+.song-link {
+    color: #d2691e;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.song-link:hover {
+    color: #b8860b;
+    text-decoration: underline;
+}
+
+.placeholder-text {
+    color: #666;
+    font-style: italic;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-container {

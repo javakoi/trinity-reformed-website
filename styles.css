@@ -744,6 +744,26 @@ body {
 }
 
 /* Music Page Styles */
+.song-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.song-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-column h3 {
+    color: #d2691e;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #d2691e;
+    padding-bottom: 0.5rem;
+}
+
 .song-links-container {
     margin-top: 1rem;
 }
@@ -893,6 +913,11 @@ body {
 
     .content-section {
         padding: 1.5rem;
+    }
+
+    .song-links-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }
 

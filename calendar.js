@@ -12,26 +12,22 @@ class CalendarManager {
 
     async loadEvents() {
         try {
-            // Try to load from localStorage first (for admin edits)
-            const localEvents = JSON.parse(localStorage.getItem('churchEvents')) || [];
-            
-            // Also try to load from events.json
+            // Load from events.json as primary source (repo version)
             const response = await fetch('events.json');
             if (response.ok) {
                 const jsonEvents = await response.json();
-                // Merge: use localStorage if it exists and is newer, otherwise use JSON
-                if (localEvents.length > 0) {
-                    this.events = localEvents;
-                } else {
-                    this.events = jsonEvents;
-                }
+                this.events = jsonEvents;
+                // Update localStorage to match the repo version
+                localStorage.setItem('churchEvents', JSON.stringify(jsonEvents));
             } else {
-                // If events.json doesn't exist, use localStorage
+                // If events.json doesn't exist, fall back to localStorage
+                const localEvents = JSON.parse(localStorage.getItem('churchEvents')) || [];
                 this.events = localEvents;
             }
         } catch (error) {
-            // If fetch fails, just use localStorage
-            this.events = JSON.parse(localStorage.getItem('churchEvents')) || [];
+            // If fetch fails, use localStorage as fallback
+            const localEvents = JSON.parse(localStorage.getItem('churchEvents')) || [];
+            this.events = localEvents;
         }
         
         this.eventsLoaded = true;

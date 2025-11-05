@@ -744,6 +744,21 @@ body {
 }
 
 /* Music Page Styles */
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.download-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.download-column h2 {
+    margin-bottom: 1rem;
+}
+
 .song-links-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -913,6 +928,11 @@ body {
 
     .content-section {
         padding: 1.5rem;
+    }
+
+    .download-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .song-links-grid {

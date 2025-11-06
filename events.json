@@ -16,5 +16,23 @@
     "location": "Address to be announced via survey monkey",
     "type": "fellowship",
     "description": "Potluck - Bring sides and desserts. Bible/Book Study, Meal, Psalm Sing. "
+  },
+  {
+    "id": 1762448557824,
+    "title": "Lord's Day Service",
+    "date": "2025-11-30",
+    "time": "16:00",
+    "location": "TBD",
+    "type": "service",
+    "description": "Guest Pastor: Pastor Kameron Edenfield from Trinity Presbyterian Church Birmingham"
+  },
+  {
+    "id": 1762448600654,
+    "title": "Lord's Day Service",
+    "date": "2025-12-07",
+    "time": "16:00",
+    "location": "TBD",
+    "type": "service",
+    "description": "Guest Pastor: Pastor Kameron Edenfield from Trinity Presbyterian Church Birmingham"
   }
 ]

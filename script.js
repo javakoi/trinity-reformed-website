@@ -30,10 +30,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Contact form submission
 const contactForm = document.querySelector('.contact-form form');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    // Check for success message in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        // Show success message
+        const successMsg = document.createElement('div');
+        successMsg.className = 'form-success';
+        successMsg.style.cssText = 'background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 5px; margin-bottom: 1rem; border: 1px solid #c3e6cb;';
+        successMsg.textContent = 'Thank you for your message! We will get back to you soon.';
+        contactForm.parentNode.insertBefore(successMsg, contactForm);
         
-        // Get form data
+        // Clear the success parameter from URL
+        window.history.replaceState({}, document.title, window.location.pathname + '#contact');
+    }
+    
+    contactForm.addEventListener('submit', function(e) {
+        // Get form data for validation
         const formData = new FormData(this);
         const name = formData.get('name');
         const email = formData.get('email');
@@ -41,13 +53,19 @@ if (contactForm) {
         
         // Simple validation
         if (!name || !email || !message) {
+            e.preventDefault();
             alert('Please fill in all fields.');
             return;
         }
         
-        // Simulate form submission (in a real implementation, you would send this to a server)
-        alert('Thank you for your message! We will get back to you soon.');
-        this.reset();
+        // Disable submit button to prevent multiple submissions
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        
+        // Form will submit to FormSubmit service
+        // The form will redirect after successful submission
     });
 }
 

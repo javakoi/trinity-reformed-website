@@ -3,7 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trinity Reformed Church - Columbus, GA</title>
+    <title>Trinity Reformed Church - Columbus, GA | Reformed Evangelical Church</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Trinity Reformed Church in Columbus, GA - A Reformed Evangelical Church (CREC) committed to biblical worship, sound teaching, and genuine Christian fellowship. Join us for Lord's Day worship and weekly fellowship meals.">
+    <meta name="keywords" content="Trinity Reformed Church, Columbus GA, Reformed church, CREC, Communion of Reformed Evangelical Churches, Presbyterian church, Christian church Columbus GA, biblical worship, Reformed theology, Columbus Georgia church">
+    <meta name="author" content="Trinity Reformed Church">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://trinityreformedcrec.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trinityreformedcrec.com/">
+    <meta property="og:title" content="Trinity Reformed Church - Columbus, GA | Reformed Evangelical Church">
+    <meta property="og:description" content="Trinity Reformed Church in Columbus, GA - A Reformed Evangelical Church (CREC) committed to biblical worship, sound teaching, and genuine Christian fellowship.">
+    <meta property="og:image" content="https://trinityreformedcrec.com/Church%20symbol.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Trinity Reformed Church">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://trinityreformedcrec.com/">
+    <meta name="twitter:title" content="Trinity Reformed Church - Columbus, GA">
+    <meta name="twitter:description" content="A Reformed Evangelical Church (CREC) in Columbus, GA committed to biblical worship, sound teaching, and genuine Christian fellowship.">
+    <meta name="twitter:image" content="https://trinityreformedcrec.com/Church%20symbol.png">
+    
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="US-GA">
+    <meta name="geo.placename" content="Columbus">
+    <meta name="geo.position" content="32.4609;-84.9877">
+    <meta name="ICBM" content="32.4609, -84.9877">
+    
     <link rel="stylesheet" href="styles.css">
     <!-- Favicon for all browsers -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -29,6 +59,48 @@
     <!-- Microsoft Tiles -->
     <meta name="msapplication-TileColor" content="#d2691e">
     <meta name="msapplication-TileImage" content="android-chrome-192x192.png">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PlaceOfWorship",
+      "name": "Trinity Reformed Church",
+      "url": "https://trinityreformedcrec.com",
+      "logo": "https://trinityreformedcrec.com/Church%20symbol.png",
+      "image": "https://trinityreformedcrec.com/Church%20symbol.png",
+      "description": "Trinity Reformed Church is a Reformed Evangelical Church (CREC) in Columbus, GA committed to biblical worship, sound teaching, and genuine Christian fellowship.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4170 Striplin Terrace Drive",
+        "addressLocality": "Columbus",
+        "addressRegion": "GA",
+        "postalCode": "31909",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "32.4609",
+        "longitude": "-84.9877"
+      },
+      "telephone": "+1-706-000-0000",
+      "email": "trinityreformedcrec@gmail.com",
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=100086172589789"
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "16:00",
+        "closes": "17:30"
+      },
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Communion of Reformed Evangelical Churches",
+        "url": "https://crechurches.org"
+      }
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -260,7 +332,11 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form action="https://formsubmit.co/trinityreformedcrec@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission from Trinity Reformed Church Website">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="?success=true#contact">
+                        <input type="hidden" name="_template" value="box">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>

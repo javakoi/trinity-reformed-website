@@ -138,6 +138,31 @@
             <div id="admin-panel" class="admin-panel" style="display: none;">
             <div class="content-section">
                     <h2>Admin Panel - Manage Events</h2>
+                    
+                    <!-- GitHub Integration Section -->
+                    <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 5px; margin-bottom: 2rem; border: 1px solid #dee2e6;">
+                        <h3 style="margin-top: 0;">GitHub Integration (Optional)</h3>
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                            Connect your GitHub account to automatically sync events to the repository. 
+                            Without a token, you'll need to manually upload the downloaded events.json file.
+                        </p>
+                        <div id="github-token-status" style="margin-bottom: 1rem; font-weight: 500;">GitHub token: Not connected</div>
+                        <button type="button" id="github-token-btn" class="submit-btn" style="margin-right: 10px;">Manage GitHub Token</button>
+                        <button type="button" id="test-token-btn" class="submit-btn" style="background-color: #17a2b8; margin-right: 10px;">Test Token</button>
+                        <button type="button" id="remove-token-btn" class="submit-btn" style="background-color: #dc3545; display: none;">Remove Token</button>
+                        
+                        <div id="github-token-section" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                            <div class="form-group">
+                                <label for="github-token-input">GitHub Personal Access Token</label>
+                                <input type="password" id="github-token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                                <small style="color: #666; display: block; margin-top: 0.5rem;">
+                                    Create a token at <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> with <code>repo</code> permissions.
+                                </small>
+                            </div>
+                            <button type="button" id="save-token-btn" class="submit-btn">Save Token</button>
+                        </div>
+                    </div>
+                    
                     <form id="event-form">
                         <div class="form-group">
                             <label for="event-title">Event Title</label>
@@ -235,6 +260,31 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="github-api.js"></script>
     <script src="calendar.js"></script>
+    
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
 </body>
 </html>

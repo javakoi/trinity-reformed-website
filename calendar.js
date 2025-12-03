@@ -6,12 +6,28 @@ class CalendarManager {
         this.editingEventId = null;
         this.currentDate = new Date();
         this.eventsLoaded = false;
+        this.githubAPI = new GitHubAPI();
+        this.githubAPI.init();
         
         this.loadEvents();
     }
 
     async loadEvents() {
         try {
+            // If GitHub token is set, try to load from GitHub first
+            if (this.githubAPI.hasToken()) {
+                try {
+                    const githubEvents = await this.githubAPI.getFileContent();
+                    this.events = githubEvents;
+                    localStorage.setItem('churchEvents', JSON.stringify(githubEvents));
+                    this.eventsLoaded = true;
+                    this.init();
+                    return;
+                } catch (error) {
+                    console.warn('Failed to load from GitHub, falling back to events.json:', error);
+                }
+            }
+
             // Load from events.json as primary source (repo version)
             const response = await fetch('events.json');
             if (response.ok) {
@@ -68,6 +84,35 @@ class CalendarManager {
             this.saveEvent();
         });
 
+        // GitHub token management
+        const githubTokenBtn = document.getElementById('github-token-btn');
+        if (githubTokenBtn) {
+            githubTokenBtn.addEventListener('click', () => {
+                this.toggleGitHubTokenInput();
+            });
+        }
+
+        const saveTokenBtn = document.getElementById('save-token-btn');
+        if (saveTokenBtn) {
+            saveTokenBtn.addEventListener('click', () => {
+                this.saveGitHubToken();
+            });
+        }
+
+        const testTokenBtn = document.getElementById('test-token-btn');
+        if (testTokenBtn) {
+            testTokenBtn.addEventListener('click', () => {
+                this.testGitHubToken();
+            });
+        }
+
+        const removeTokenBtn = document.getElementById('remove-token-btn');
+        if (removeTokenBtn) {
+            removeTokenBtn.addEventListener('click', () => {
+                this.removeGitHubToken();
+            });
+        }
+
         // Cancel edit
         document.getElementById('cancel-edit').addEventListener('click', () => {
             this.cancelEdit();
@@ -98,6 +143,7 @@ class CalendarManager {
         document.getElementById('admin-panel').style.display = 'block';
         document.getElementById('add-event-btn').style.display = 'inline-block';
         document.getElementById('admin-toggle').textContent = 'Admin Logout';
+        this.updateGitHubTokenUI();
     }
 
     hideAdminPanel() {
@@ -117,7 +163,7 @@ class CalendarManager {
         this.scrollToAdminPanel();
     }
 
-    saveEvent() {
+    async saveEvent() {
         const formData = new FormData(document.getElementById('event-form'));
         const eventData = {
             id: this.editingEventId || Date.now(),
@@ -140,7 +186,7 @@ class CalendarManager {
             this.events.push(eventData);
         }
 
-        this.saveEvents();
+        await this.saveEvents();
         this.renderCalendar();
         this.hideAdminPanel();
         // Scroll back to calendar
@@ -189,9 +235,9 @@ class CalendarManager {
         this.scrollToAdminPanel();
     }
 
-    deleteEvent(eventId) {
+    async deleteEvent(eventId) {
         this.events = this.events.filter(e => e.id !== eventId);
-        this.saveEvents();
+        await this.saveEvents();
         this.renderCalendar();
     }
 
@@ -257,10 +303,25 @@ class CalendarManager {
         }, 100);
     }
 
-    saveEvents() {
+    async saveEvents() {
+        // Always save to localStorage as backup
         localStorage.setItem('churchEvents', JSON.stringify(this.events));
         
-        // Download events.json file for admin to upload to repository
+        // If GitHub token is set, save to GitHub
+        if (this.githubAPI.hasToken()) {
+            try {
+                const result = await this.githubAPI.saveFileContent(this.events);
+                this.showNotification(result.message, 'success');
+                // Don't download file if saved to GitHub successfully
+                return;
+            } catch (error) {
+                console.error('Failed to save to GitHub:', error);
+                this.showNotification(`Failed to save to GitHub: ${error.message}. Falling back to file download.`, 'error');
+                // Fall through to download file as backup
+            }
+        }
+        
+        // Download events.json file for admin to upload to repository (fallback)
         setTimeout(() => {
             const dataStr = JSON.stringify(this.events, null, 2);
             const dataBlob = new Blob([dataStr], { type: 'application/json' });
@@ -272,7 +333,139 @@ class CalendarManager {
             link.click();
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
+            
+            if (!this.githubAPI.hasToken()) {
+                this.showNotification('Events saved locally. Download events.json and upload to GitHub repository to sync.', 'info');
+            }
         }, 500);
+    }
+
+    showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existing = document.querySelector('.calendar-notification');
+        if (existing) {
+            existing.remove();
+        }
+
+        const notification = document.createElement('div');
+        notification.className = `calendar-notification ${type}`;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 10000;
+            max-width: 400px;
+            animation: slideIn 0.3s ease;
+        `;
+
+        const colors = {
+            success: { bg: '#d4edda', color: '#155724', border: '#c3e6cb' },
+            error: { bg: '#f8d7da', color: '#721c24', border: '#f5c6cb' },
+            info: { bg: '#d1ecf1', color: '#0c5460', border: '#bee5eb' }
+        };
+
+        const style = colors[type] || colors.info;
+        notification.style.backgroundColor = style.bg;
+        notification.style.color = style.color;
+        notification.style.border = `1px solid ${style.border}`;
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 5000);
+    }
+
+    toggleGitHubTokenInput() {
+        const tokenInput = document.getElementById('github-token-input');
+        const tokenSection = document.getElementById('github-token-section');
+        
+        if (tokenSection.style.display === 'none' || !tokenSection.style.display) {
+            tokenSection.style.display = 'block';
+            if (this.githubAPI.hasToken()) {
+                tokenInput.value = '••••••••••••••••'; // Masked token
+            }
+        } else {
+            tokenSection.style.display = 'none';
+        }
+    }
+
+    async saveGitHubToken() {
+        const tokenInput = document.getElementById('github-token-input');
+        const token = tokenInput.value.trim();
+
+        if (!token) {
+            this.showNotification('Please enter a GitHub token', 'error');
+            return;
+        }
+
+        this.githubAPI.setToken(token);
+        
+        // Test the token
+        const testResult = await this.githubAPI.testToken();
+        if (testResult.valid) {
+            this.showNotification('GitHub token saved and verified! Events will now sync to GitHub.', 'success');
+            tokenInput.value = '••••••••••••••••'; // Mask token
+            this.updateGitHubTokenUI();
+        } else {
+            this.showNotification(`Token verification failed: ${testResult.message}`, 'error');
+            this.githubAPI.clearToken();
+        }
+    }
+
+    async testGitHubToken() {
+        if (!this.githubAPI.hasToken()) {
+            this.showNotification('No GitHub token set', 'error');
+            return;
+        }
+
+        const testResult = await this.githubAPI.testToken();
+        if (testResult.valid) {
+            this.showNotification('GitHub token is valid!', 'success');
+        } else {
+            this.showNotification(`Token test failed: ${testResult.message}`, 'error');
+        }
+    }
+
+    removeGitHubToken() {
+        if (confirm('Are you sure you want to remove the GitHub token? Events will no longer sync automatically.')) {
+            this.githubAPI.clearToken();
+            const tokenInput = document.getElementById('github-token-input');
+            if (tokenInput) {
+                tokenInput.value = '';
+            }
+            this.updateGitHubTokenUI();
+            this.showNotification('GitHub token removed', 'info');
+        }
+    }
+
+    updateGitHubTokenUI() {
+        const tokenStatus = document.getElementById('github-token-status');
+        const removeTokenBtn = document.getElementById('remove-token-btn');
+        
+        if (this.githubAPI.hasToken()) {
+            if (tokenStatus) {
+                tokenStatus.textContent = 'GitHub token: ✓ Connected';
+                tokenStatus.style.color = '#28a745';
+            }
+            if (removeTokenBtn) {
+                removeTokenBtn.style.display = 'inline-block';
+            }
+        } else {
+            if (tokenStatus) {
+                tokenStatus.textContent = 'GitHub token: Not connected';
+                tokenStatus.style.color = '#dc3545';
+            }
+            if (removeTokenBtn) {
+                removeTokenBtn.style.display = 'none';
+            }
+        }
     }
 
     renderCalendar() {

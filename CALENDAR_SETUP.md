@@ -74,4 +74,3 @@ The calendar is configured to work with:
 - **Branch**: `main`
 
 To change these settings, edit the `GitHubAPI` class in `github-api.js`.
-

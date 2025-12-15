@@ -788,6 +788,18 @@ body {
     padding-bottom: 0.5rem;
 }
 
+.service-subsection {
+    margin-bottom: 1.5rem;
+}
+
+.service-subsection h4 {
+    color: #8b4513;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+}
+
 .song-links-container {
     margin-top: 1rem;
 }

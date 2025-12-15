@@ -43,5 +43,14 @@
     "location": "Cascade Hills Park Pavilion ",
     "type": "fellowship",
     "description": "Potluck. 4PM (ET) Park closes at 7pm. "
+  },
+  {
+    "id": 1765823440687,
+    "title": "Fellowship Meal",
+    "date": "2025-12-14",
+    "time": "16:00",
+    "location": "The Fortins",
+    "type": "fellowship",
+    "description": ""
   }
 ]

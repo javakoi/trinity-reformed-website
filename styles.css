@@ -800,6 +800,19 @@ body {
     margin-top: 0;
 }
 
+.service-subsection h4 a {
+    color: #8b4513;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.service-subsection h4 a:hover {
+    color: #d2691e;
+    text-decoration: underline;
+}
+
 .song-links-container {
     margin-top: 1rem;
 }

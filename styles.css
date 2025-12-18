@@ -802,15 +802,17 @@ body {
 
 .service-subsection h4 a {
     color: #8b4513;
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
     font-weight: 600;
     font-size: 1rem;
+    cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .service-subsection h4 a:hover {
     color: #d2691e;
-    text-decoration: underline;
+    text-decoration-thickness: 2px;
 }
 
 .song-links-container {

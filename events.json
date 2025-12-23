@@ -52,5 +52,14 @@
     "location": "The Fortins",
     "type": "fellowship",
     "description": ""
+  },
+  {
+    "id": 1766505323191,
+    "title": "The Lord’s Day Service @ 4PM ET",
+    "date": "2026-01-04",
+    "time": "16:00",
+    "location": "4170 Striplin Terrace Dr, Columbus, GA 31909",
+    "type": "service",
+    "description": "Guest Pastor - Pastor Grant from TRC Newnan"
   }
 ]

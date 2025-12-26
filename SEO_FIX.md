@@ -5,6 +5,7 @@
 1. **Page with redirect**
 2. **Redirect error**
 3. **Duplicate without user-selected canonical**
+4. **Alternate page with proper canonical tag** (NEW)
 
 ## Root Cause
 
@@ -15,6 +16,7 @@ The CNAME file was pointing to `www.trinityreformedcrec.com`, but all canonical 
 ## Fix Applied
 
 ✅ Updated CNAME file to use `trinityreformedcrec.com` (non-www) to match all canonical URLs
+✅ Created robots.txt file to help guide Google's crawler
 
 ## Additional Steps Required
 
@@ -63,10 +65,30 @@ All pages correctly use non-www canonical URLs:
 - `https://trinityreformedcrec.com/creeds.html`
 - `https://trinityreformedcrec.com/more-info.html`
 
+## Understanding "Alternate page with proper canonical tag"
+
+This warning means Google found pages that have canonical tags pointing to other pages. This is actually **correct behavior** - those pages are marked as alternates and won't be indexed separately. However, Google is warning you about it.
+
+**Common causes:**
+- Google accessing both www and non-www versions (one canonicalizes to the other)
+- Google accessing both `/` and `/index.html` (if both are accessible)
+- Google accessing URLs with/without trailing slashes
+
+**What this means:**
+- Pages with canonical tags pointing to other pages are correctly marked as alternates
+- Google will index the canonical version, not the alternate
+- This is the intended behavior for duplicate content
+
+**To resolve:**
+1. Ensure all canonical tags are self-referential (✅ Already done - each page points to itself)
+2. Set up server-level redirects so alternate URLs redirect to canonical versions
+3. The robots.txt file helps guide Google's crawler
+
 ## Next Steps
 
 1. ✅ CNAME updated (done)
-2. ⏳ Set up redirects at domain/hosting level
-3. ⏳ Verify in Google Search Console
-4. ⏳ Request re-indexing after redirects are set up
+2. ✅ robots.txt created (done)
+3. ⏳ Set up redirects at domain/hosting level (CRITICAL)
+4. ⏳ Verify in Google Search Console
+5. ⏳ Request re-indexing after redirects are set up
 

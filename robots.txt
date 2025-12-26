@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap location (if you create one later)
+# Sitemap: https://trinityreformedcrec.com/sitemap.xml
+
+# Note: Canonical tags in HTML files handle duplicate content
+# All pages have self-referential canonical tags pointing to their own URLs
+

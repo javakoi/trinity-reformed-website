@@ -266,14 +266,19 @@ body {
 .about {
     padding: 5rem 0;
     background-color: white;
+}
+
+/* About Header with Background Image */
+.about-header {
     position: relative;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 250px;
 }
 
-.about.with-background {
-    background-color: transparent;
-}
-
-.about-background {
+.about-header-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -283,14 +288,15 @@ body {
     overflow: hidden;
 }
 
-.about-background img {
+.about-header-background img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     opacity: 0.8;
 }
 
-.about-overlay {
+.about-header-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -300,7 +306,8 @@ body {
     z-index: 1;
 }
 
-.about .container {
+.about-header .section-icon,
+.about-header h2 {
     position: relative;
     z-index: 2;
 }
@@ -600,14 +607,18 @@ body {
 .contact {
     padding: 5rem 0;
     background-color: #f8f9fa;
+}
+
+/* Contact Header with Background Image */
+.contact-header {
     position: relative;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.contact.with-background {
-    background-color: transparent;
-}
-
-.contact-background {
+.contact-header-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -617,14 +628,14 @@ body {
     overflow: hidden;
 }
 
-.contact-background img {
+.contact-header-background img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 0.8;
 }
 
-.contact-overlay {
+.contact-header-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -634,7 +645,8 @@ body {
     z-index: 1;
 }
 
-.contact .container {
+.contact-header .section-icon,
+.contact-header h2 {
     position: relative;
     z-index: 2;
 }
@@ -1209,9 +1221,11 @@ body {
     }
 
     /* Mobile adjustments for header backgrounds */
+    .about-header,
     .distinctives-header,
     .worship-header,
     .beliefs-header,
+    .contact-header,
     .resources-header {
         padding: 1.5rem 1rem;
         margin-bottom: 1.5rem;
@@ -1219,57 +1233,40 @@ body {
         max-height: 200px;
     }
 
+    .about-header h2,
     .distinctives-header h2,
     .worship-header h2,
     .beliefs-header h2,
+    .contact-header h2,
     .resources-header h1 {
         font-size: 1.6rem;
     }
 
+    .about-header .section-icon,
     .distinctives-header .section-icon,
     .worship-header .section-icon,
     .beliefs-header .section-icon,
+    .contact-header .section-icon,
     .resources-header .page-icon {
         width: 50px;
         height: 50px;
     }
 
-    /* Ensure background images are properly contained on mobile */
-    .about-background,
-    .worship-background,
-    .contact-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    .about-background img,
-    .worship-background img,
-    .contact-background img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        max-width: 100%;
-        max-height: 100%;
-    }
-
     /* Ensure header background images are properly contained */
+    .about-header-background,
     .distinctives-header-background,
     .worship-header-background,
     .beliefs-header-background,
+    .contact-header-background,
     .resources-header-background {
         pointer-events: none;
     }
 
+    .about-header-background img,
     .distinctives-header-background img,
     .worship-header-background img,
     .beliefs-header-background img,
+    .contact-header-background img,
     .resources-header-background img {
         max-width: 100%;
         max-height: 100%;
@@ -1337,17 +1334,21 @@ body {
     }
 
     /* Extra small mobile adjustments for header backgrounds */
+    .about-header,
     .distinctives-header,
     .worship-header,
     .beliefs-header,
+    .contact-header,
     .resources-header {
         padding: 1.5rem 1rem;
         margin-bottom: 1.5rem;
     }
 
+    .about-header h2,
     .distinctives-header h2,
     .worship-header h2,
     .beliefs-header h2,
+    .contact-header h2,
     .resources-header h1 {
         font-size: 1.5rem;
     }

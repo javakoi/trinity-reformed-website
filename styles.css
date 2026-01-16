@@ -1749,3 +1749,157 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Sermons Page Styles */
+.recent-sermon {
+    margin-bottom: 2rem;
+}
+
+.sermon-placeholder {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid #d2691e;
+    text-align: center;
+}
+
+.media-search {
+    margin-bottom: 2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #d2691e;
+}
+
+.media-library-section {
+    margin-bottom: 3rem;
+}
+
+.media-library-section h3 {
+    color: #d2691e;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #d2691e;
+    padding-bottom: 0.5rem;
+}
+
+.series-list,
+.speakers-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.series-item,
+.speaker-item {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #d2691e;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.series-item:hover,
+.speaker-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.series-item h4,
+.speaker-item h4 {
+    color: #d2691e;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.series-item p,
+.speaker-item p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Mobile adjustments for sermons page */
+@media (max-width: 768px) {
+    .series-list,
+    .speakers-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Give Page Styles */
+.giving-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.giving-option {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #d2691e;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.giving-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.giving-option-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.giving-logo {
+    max-width: 200px;
+    max-height: 120px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.giving-option p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.giving-placeholder {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Mobile adjustments for give page */
+@media (max-width: 768px) {
+    .giving-options {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .giving-option {
+        padding: 1.5rem;
+    }
+
+    .giving-logo {
+        max-width: 150px;
+        max-height: 90px;
+    }
+}

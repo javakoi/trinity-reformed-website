@@ -73,6 +73,13 @@ body {
     display: flex;
     list-style: none;
     gap: 30px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+    .nav-menu {
+        gap: 20px;
+    }
 }
 
 .nav-link {
@@ -1103,6 +1110,105 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    body.nav-menu-open {
+        overflow: hidden;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem 0 3rem 0;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        gap: 0;
+        z-index: 999;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .hamburger {
+        display: flex;
+        z-index: 1000;
+    }
+    
+    .nav-menu .nav-item {
+        width: 100%;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #eee;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .nav-menu .nav-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    
+    .nav-menu .dropdown {
+        width: 100%;
+        display: block !important;
+    }
+    
+    .nav-menu .dropdown .nav-link {
+        display: block !important;
+        width: 100%;
+    }
+    
+    /* Mobile dropdown adjustments - force visibility */
+    .nav-menu .dropdown .dropdown-menu,
+    .nav-menu .dropdown:hover .dropdown-menu {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        margin-left: 1rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+        display: block !important;
+        width: auto !important;
+        min-width: auto !important;
+    }
+
+    .nav-menu .dropdown-menu li {
+        width: 100%;
+        margin: 0;
+        display: block !important;
+        list-style: none !important;
+    }
+
+    .nav-menu .dropdown-menu a {
+        padding: 0.5rem 0 !important;
+        color: #d2691e !important;
+        display: block !important;
+        text-decoration: none !important;
+    }
+    
+    /* Ensure all nav items after dropdown are visible */
+    .nav-menu li.nav-item:not(.dropdown),
+    .nav-menu li.nav-item.dropdown,
+    .nav-menu li.nav-item.dropdown ~ li.nav-item {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-container {
         padding: 0 20px;
@@ -1123,24 +1229,7 @@ body {
     }
     
     .nav-menu {
-        position: fixed;
-        left: -100%;
         top: 70px;
-        flex-direction: column;
-        background-color: white;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 2rem 0;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .hamburger {
-        display: flex;
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -1194,22 +1283,6 @@ body {
         text-align: center;
     }
 
-    /* Mobile dropdown adjustments */
-    .dropdown-menu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        background-color: transparent;
-        padding: 0;
-        margin-left: 1rem;
-    }
-
-    .dropdown-menu a {
-        padding: 0.5rem 0;
-        color: #d2691e;
-    }
 
     /* Page layout mobile adjustments */
     .page-header h1 {
@@ -1221,17 +1294,38 @@ body {
     }
 
     /* Mobile adjustments for header backgrounds */
+    .container {
+        position: relative;
+    }
+    
+    .page-header.resources-header {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        min-height: 150px;
+        max-height: 200px;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        border-radius: 0;
+    }
+    
     .about-header,
     .distinctives-header,
     .worship-header,
     .beliefs-header,
     .contact-header,
     .resources-header {
-        padding: 1.5rem 1rem;
+        padding: 1.5rem;
         margin-bottom: 1.5rem;
-        min-height: auto;
+        min-height: 150px;
         max-height: 200px;
         overflow: hidden;
+        aspect-ratio: 16 / 9;
     }
 
     .about-header h2,
@@ -1263,6 +1357,17 @@ body {
         pointer-events: none;
     }
 
+    .about-header-background,
+    .distinctives-header-background,
+    .worship-header-background,
+    .beliefs-header-background,
+    .contact-header-background,
+    .resources-header-background {
+        aspect-ratio: 16 / 9;
+        min-height: 150px;
+        max-height: 200px;
+    }
+    
     .about-header-background img,
     .distinctives-header-background img,
     .worship-header-background img,
@@ -1273,8 +1378,6 @@ body {
         height: 100%;
         object-fit: cover;
         object-position: center;
-        max-width: 100%;
-        max-height: 100%;
         display: block;
     }
 
@@ -1339,6 +1442,15 @@ body {
     }
 
     /* Extra small mobile adjustments for header backgrounds */
+    .page-header.resources-header {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+
     .about-header,
     .distinctives-header,
     .worship-header,
@@ -1390,6 +1502,16 @@ body {
     
     .container {
         padding: 0 10px;
+    }
+    
+    /* Extra extra small mobile adjustments for header backgrounds */
+    .page-header.resources-header {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
     }
 }
 

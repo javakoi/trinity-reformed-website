@@ -1115,10 +1115,25 @@ body {
         overflow: hidden;
     }
     
+    /* Override default dropdown styles for mobile */
+    .dropdown-menu {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+    
     .nav-menu {
         position: fixed;
         left: -100%;
         top: 80px;
+        bottom: 0;
         flex-direction: column;
         background-color: white;
         width: 100%;
@@ -1126,9 +1141,10 @@ body {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0 3rem 0;
+        height: calc(100vh - 80px);
         max-height: calc(100vh - 80px);
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
         gap: 0;
         z-index: 999;
         -webkit-overflow-scrolling: touch;
@@ -1143,33 +1159,50 @@ body {
         z-index: 1000;
     }
     
-    .nav-menu .nav-item {
-        width: 100%;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid #eee;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+    /* Ensure nav-menu ul is properly displayed */
+    .nav-menu {
+        display: flex !important;
+        list-style: none !important;
     }
     
-    .nav-menu .nav-item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
+    /* Ensure all nav items are visible */
+    .nav-menu li,
+    .nav-menu > li,
+    .nav-menu li.nav-item,
+    .nav-menu > li.nav-item {
+        width: 100% !important;
+        padding: 0.75rem 0 !important;
+        border-bottom: 1px solid #eee !important;
+        display: list-item !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        list-style: none !important;
+    }
+    
+    .nav-menu li:last-child,
+    .nav-menu li.nav-item:last-child {
+        border-bottom: none !important;
+        margin-bottom: 0 !important;
     }
     
     .nav-menu .dropdown {
-        width: 100%;
+        width: 100% !important;
         display: block !important;
+        position: relative !important;
     }
     
-    .nav-menu .dropdown .nav-link {
+    .nav-menu .dropdown > .nav-link {
         display: block !important;
-        width: 100%;
+        width: 100% !important;
     }
     
-    /* Mobile dropdown adjustments - force visibility */
+    /* Mobile dropdown menu - always visible */
+    .nav-menu .dropdown-menu,
     .nav-menu .dropdown .dropdown-menu,
-    .nav-menu .dropdown:hover .dropdown-menu {
+    .nav-menu .dropdown:hover .dropdown-menu,
+    .nav-menu .dropdown > .dropdown-menu,
+    .nav-menu li.dropdown ul.dropdown-menu {
         position: static !important;
         opacity: 1 !important;
         visibility: visible !important;
@@ -1177,35 +1210,30 @@ body {
         box-shadow: none !important;
         background-color: transparent !important;
         padding: 0 !important;
-        margin-left: 1rem !important;
-        margin-top: 0.5rem !important;
-        margin-bottom: 0.5rem !important;
+        margin: 0.5rem 0 0.5rem 1rem !important;
         display: block !important;
-        width: auto !important;
+        width: calc(100% - 1rem) !important;
         min-width: auto !important;
+        left: auto !important;
+        top: auto !important;
+        list-style: none !important;
     }
 
-    .nav-menu .dropdown-menu li {
-        width: 100%;
-        margin: 0;
+    .nav-menu .dropdown-menu li,
+    .nav-menu .dropdown .dropdown-menu li {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
         display: block !important;
         list-style: none !important;
     }
 
-    .nav-menu .dropdown-menu a {
+    .nav-menu .dropdown-menu a,
+    .nav-menu .dropdown .dropdown-menu a {
         padding: 0.5rem 0 !important;
         color: #d2691e !important;
         display: block !important;
         text-decoration: none !important;
-    }
-    
-    /* Ensure all nav items after dropdown are visible */
-    .nav-menu li.nav-item:not(.dropdown),
-    .nav-menu li.nav-item.dropdown,
-    .nav-menu li.nav-item.dropdown ~ li.nav-item {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
     }
 }
 

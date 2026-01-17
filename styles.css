@@ -1751,6 +1751,46 @@ body {
 }
 
 /* Sermons Page Styles */
+.recent-sermon-section {
+    position: relative;
+    padding: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.recent-sermon-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.recent-sermon-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+}
+
+.recent-sermon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(248, 249, 250, 0.8), rgba(255, 255, 255, 0.9));
+    z-index: 1;
+}
+
+.recent-sermon-section > h2,
+.recent-sermon {
+    position: relative;
+    z-index: 2;
+}
+
 .recent-sermon {
     margin-bottom: 2rem;
 }
@@ -1761,6 +1801,105 @@ body {
     border-radius: 8px;
     border-left: 4px solid #d2691e;
     text-align: center;
+}
+
+.sermon-item {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #d2691e;
+}
+
+.recent-sermon .sermon-item {
+    background-image: url('Genesis Art.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.recent-sermon .sermon-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(248, 249, 250, 0.4), rgba(255, 255, 255, 0.5));
+    border-radius: 10px;
+    z-index: 0;
+}
+
+.recent-sermon .sermon-item > * {
+    position: relative;
+    z-index: 1;
+}
+
+.recent-sermon .sermon-item h3,
+.recent-sermon .sermon-item .sermon-meta,
+.recent-sermon .sermon-item .sermon-meta span,
+.recent-sermon .sermon-item .sermon-series,
+.recent-sermon .sermon-item .series-link {
+    color: #333;
+}
+
+.recent-sermon .sermon-item .series-link:hover {
+    color: #d2691e;
+}
+
+.sermon-header {
+    margin-bottom: 1.5rem;
+}
+
+.sermon-header h3 {
+    color: #d2691e;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.sermon-meta {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.sermon-date,
+.sermon-speaker,
+.sermon-text {
+    margin-right: 0.5rem;
+}
+
+.sermon-audio {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+.audio-player {
+    width: 100%;
+}
+
+.sermon-details {
+    margin-top: 1rem;
+}
+
+.sermon-series {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.series-link {
+    color: #d2691e;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.series-link:hover {
+    color: #b8860b;
+    text-decoration: underline;
 }
 
 .media-search {
@@ -1814,6 +1953,40 @@ body {
 .speaker-item:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.series-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.series-item-link:hover {
+    text-decoration: none;
+}
+
+.series-item {
+    text-align: center;
+}
+
+.series-item-link:hover .series-item {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.series-art {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.sermons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .series-item h4,

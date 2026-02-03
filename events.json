@@ -88,5 +88,14 @@
     "location": "",
     "type": "fellowship",
     "description": "Fellowship Meal potluck after service. "
+  },
+  {
+    "id": 1770078110000,
+    "title": "Sabbath Meal/Psalm Sing",
+    "date": "2026-02-28",
+    "time": "16:00",
+    "location": "The Rev’s",
+    "type": "special",
+    "description": ""
   }
 ]

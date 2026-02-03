@@ -1824,6 +1824,10 @@ body {
     background-color: #d2691e;
 }
 
+.event-type-indicator.parishgroups {
+    background-color: #800000;
+}
+
 .more-events-indicator {
     position: absolute;
     left: 0.3rem;
@@ -1919,6 +1923,10 @@ body {
 
 .event-type-badge.special {
     background-color: #d2691e;
+}
+
+.event-type-badge.parishgroups {
+    background-color: #800000;
 }
 
 .day-event-actions {

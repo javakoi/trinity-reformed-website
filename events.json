@@ -52,5 +52,50 @@
     "location": "The Fortins",
     "type": "fellowship",
     "description": ""
+  },
+  {
+    "id": 1770064337190,
+    "title": "Parish Groups",
+    "date": "2026-02-03",
+    "time": "",
+    "location": "",
+    "type": "parishgroups",
+    "description": "McMaster, Suber, VB.\n\nTalk to POCs for details. "
+  },
+  {
+    "id": 1770064386370,
+    "title": "Parish Groups",
+    "date": "2026-02-17",
+    "time": "",
+    "location": "",
+    "type": "parishgroups",
+    "description": "McMaster, Suber, VB.\n\nTalk to POCs for details. "
+  },
+  {
+    "id": 1770064663865,
+    "title": "Fellowship Meal after Service",
+    "date": "2026-02-08",
+    "time": "",
+    "location": "",
+    "type": "fellowship",
+    "description": "Fellowship Meal potluck after service. "
+  },
+  {
+    "id": 1770064886695,
+    "title": "Fellowship Meal after Service",
+    "date": "2026-02-22",
+    "time": "",
+    "location": "",
+    "type": "fellowship",
+    "description": "Fellowship Meal potluck after service. "
+  },
+  {
+    "id": 1770078110000,
+    "title": "Sabbath Meal/Psalm Sing",
+    "date": "2026-02-28",
+    "time": "16:00",
+    "location": "The Rev’s",
+    "type": "special",
+    "description": ""
   }
 ]

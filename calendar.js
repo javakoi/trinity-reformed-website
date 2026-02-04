@@ -541,6 +541,9 @@ class CalendarManager {
                         case 'service':
                             typeText = "Lord's Day Service";
                             break;
+                        case 'parishgroups':
+                            typeText = 'Parish Groups';
+                            break;
                         case 'special':
                         default:
                             typeText = 'Special Event';
@@ -597,6 +600,9 @@ class CalendarManager {
                     break;
                 case 'service':
                     typeText = "Lord's Day Service";
+                    break;
+                case 'parishgroups':
+                    typeText = 'Parish Groups';
                     break;
                 case 'special':
                 default:

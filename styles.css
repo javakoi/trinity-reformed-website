@@ -2308,6 +2308,8 @@ body {
 .giving-options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    align-items: stretch;
     gap: 2rem;
     margin: 2rem 0;
 }
@@ -2319,6 +2321,9 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-left: 4px solid #d2691e;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 520px;
 }
 
 .giving-option:hover {
@@ -2350,7 +2355,73 @@ body {
     background-color: #f8f9fa;
     padding: 1.5rem;
     border-radius: 8px;
-    margin-top: 1rem;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 320px;
+}
+
+.tithely-give-content,
+.venmo-give-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.venmo-give-content {
+    margin-top: 2rem;
+}
+
+.qr-code-wrapper {
+    width: 220px;
+    height: 220px;
+    flex-shrink: 0;
+    display: block;
+}
+
+.tithely-give-content .qr-code-wrapper {
+    width: 180px;
+    height: 180px;
+}
+
+.tithely-qr-code,
+.venmo-qr-code {
+    width: 220px;
+    height: 220px;
+    max-width: 220px;
+    max-height: 220px;
+    object-fit: contain;
+    display: block;
+}
+
+.tithely-give-content .tithely-qr-code {
+    width: 180px;
+    height: 180px;
+    max-width: 180px;
+    max-height: 180px;
+}
+
+.venmo-button {
+    background-color: #008CFF;
+    color: white;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 19px;
+    padding: 15px 70px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.venmo-button:hover {
+    background-color: #0077d9;
 }
 
 /* Mobile adjustments for give page */
@@ -2362,6 +2433,11 @@ body {
 
     .giving-option {
         padding: 1.5rem;
+        min-height: auto;
+    }
+
+    .giving-placeholder {
+        min-height: 280px;
     }
 
     .giving-logo {

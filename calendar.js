@@ -480,16 +480,22 @@ class CalendarManager {
 
     // Check if a week (identified by any date in it) has a Parish Week event
     weekHasParishWeek(weekSunday) {
+        return this.getParishWeekEvents(weekSunday).length > 0;
+    }
+
+    // Get all Parish Week events for a given week (weekSunday = YYYY-MM-DD of that week's Sunday)
+    getParishWeekEvents(weekSunday) {
         const [y, m, d] = weekSunday.split('-').map(Number);
         const sunday = new Date(y, m - 1, d);
+        const events = [];
         for (let i = 0; i < 7; i++) {
             const checkDate = new Date(sunday);
             checkDate.setDate(sunday.getDate() + i);
             const dateStr = `${checkDate.getFullYear()}-${String(checkDate.getMonth() + 1).padStart(2, '0')}-${String(checkDate.getDate()).padStart(2, '0')}`;
-            const hasParishWeek = this.events.some(e => e.type === 'parishweek' && e.date === dateStr);
-            if (hasParishWeek) return true;
+            const weekEvents = this.events.filter(e => e.type === 'parishweek' && e.date === dateStr);
+            events.push(...weekEvents);
         }
-        return false;
+        return events;
     }
 
     renderCalendar() {
@@ -516,12 +522,33 @@ class CalendarManager {
 
         let cellsInRow = 0;
         let firstDateInRow = null;
+        let rowCells = [];
+
+        const addParishWeekSegments = (cells, showTextIndex = 3) => {
+            const weekSunday = firstDateInRow ? this.getWeekSunday(firstDateInRow) : null;
+            if (!weekSunday || !this.weekHasParishWeek(weekSunday)) return;
+            const parishWeekEvents = this.getParishWeekEvents(weekSunday);
+            cells.forEach((cell, i) => {
+                const segment = document.createElement('div');
+                segment.className = 'parish-week-segment';
+                segment.setAttribute('data-week-sunday', weekSunday);
+                if (i === showTextIndex) segment.textContent = 'Parish Week';
+                segment.setAttribute('aria-label', 'Parish Week - click for details');
+                segment.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.showParishWeekEvents(weekSunday);
+                });
+                cell.appendChild(segment);
+                cell.classList.add('has-parish-week');
+            });
+        };
 
         // Add empty cells for days before the first day of the month
         for (let i = 0; i < startingDayOfWeek; i++) {
             const emptyDay = document.createElement('div');
             emptyDay.className = 'calendar-day empty-day';
             calendarDays.appendChild(emptyDay);
+            rowCells.push(emptyDay);
             cellsInRow++;
         }
 
@@ -604,43 +631,43 @@ class CalendarManager {
             }
 
             calendarDays.appendChild(dayElement);
+            rowCells.push(dayElement);
             cellsInRow++;
 
-            // End of row - add Parish Week bar if applicable
+            // End of row - add Parish Week segments to each cell if applicable
             if (cellsInRow === 7) {
-                const weekSunday = this.getWeekSunday(firstDateInRow);
-                if (this.weekHasParishWeek(weekSunday)) {
-                    const parishBar = document.createElement('div');
-                    parishBar.className = 'parish-week-bar';
-                    parishBar.textContent = 'Parish Week';
-                    parishBar.setAttribute('aria-label', 'Parish Week');
-                    calendarDays.appendChild(parishBar);
-                }
+                addParishWeekSegments(rowCells);
                 cellsInRow = 0;
                 firstDateInRow = null;
+                rowCells = [];
             }
         }
 
-        // Fill remaining cells in last row and add parish bar if needed
+        // Fill remaining cells in last row and add parish week segments if needed
         if (cellsInRow > 0) {
-            const weekSunday = firstDateInRow ? this.getWeekSunday(firstDateInRow) : null;
             while (cellsInRow < 7) {
                 const emptyDay = document.createElement('div');
                 emptyDay.className = 'calendar-day empty-day';
                 calendarDays.appendChild(emptyDay);
+                rowCells.push(emptyDay);
                 cellsInRow++;
             }
-            if (weekSunday && this.weekHasParishWeek(weekSunday)) {
-                const parishBar = document.createElement('div');
-                parishBar.className = 'parish-week-bar';
-                parishBar.textContent = 'Parish Week';
-                parishBar.setAttribute('aria-label', 'Parish Week');
-                calendarDays.appendChild(parishBar);
-            }
+            addParishWeekSegments(rowCells);
         }
     }
 
-    showDayEvents(events, dateString) {
+    showParishWeekEvents(weekSunday) {
+        const events = this.getParishWeekEvents(weekSunday);
+        if (events.length === 0) return;
+        const [y, m, d] = weekSunday.split('-').map(Number);
+        const sunday = new Date(y, m - 1, d);
+        const saturday = new Date(sunday);
+        saturday.setDate(sunday.getDate() + 6);
+        const weekRange = `${sunday.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${saturday.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+        this.showDayEvents(events, weekSunday, `Parish Week (${weekRange})`);
+    }
+
+    showDayEvents(events, dateString, customTitle = null) {
         // Sort events by time for display in modal
         const sortedEvents = [...events].sort((a, b) => {
             // Handle events without time (put them at the end)
@@ -694,21 +721,23 @@ class CalendarManager {
         }).join('');
 
         // Format date for display
-        const dateParts = dateString.split('-');
-        const date = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
-        const formattedDate = date.toLocaleDateString('en-US', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        });
+        const formattedDate = customTitle || (() => {
+            const dateParts = dateString.split('-');
+            const date = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        })();
 
         const modal = document.createElement('div');
         modal.className = 'day-events-modal';
         modal.innerHTML = `
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Events for ${formattedDate}</h3>
+                    <h3>${customTitle ? formattedDate : `Events for ${formattedDate}`}</h3>
                     <button class="modal-close">&times;</button>
                 </div>
                 <div class="modal-body">

@@ -1828,14 +1828,31 @@ body {
     background-color: #800000;
 }
 
-.parish-week-bar {
-    grid-column: 1 / -1;
+.parish-week-segment {
+    position: absolute;
+    bottom: 0;
+    left: -1px;
+    right: -1px;
+    height: 18px;
     background-color: #800020;
     color: white;
     text-align: center;
-    padding: 0.5rem 1rem;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.parish-week-segment:hover {
+    background-color: #a00028;
+}
+
+.calendar-day.has-parish-week {
+    padding-bottom: 22px;
 }
 
 .more-events-indicator {

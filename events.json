@@ -97,5 +97,14 @@
     "location": "The Rev’s",
     "type": "special",
     "description": ""
+  },
+  {
+    "id": 1772120593722,
+    "title": "Fellowship Meal after Service",
+    "date": "2026-03-08",
+    "time": "",
+    "location": "",
+    "type": "fellowship",
+    "description": "Fellowship Meal potluck after service."
   }
 ]

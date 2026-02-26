@@ -169,5 +169,14 @@
     "location": "Striplin Terrace",
     "type": "special",
     "description": "Potluck after service."
+  },
+  {
+    "id": 1772122098506,
+    "title": "Parish Week",
+    "date": "2026-03-01",
+    "time": "",
+    "location": "",
+    "type": "parishweek",
+    "description": "POCs: McMaster, Suber, VB"
   }
 ]

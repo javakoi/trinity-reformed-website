@@ -151,5 +151,14 @@
     "location": "",
     "type": "parishweek",
     "description": "POCs: McMaster, Suber, VB"
+  },
+  {
+    "id": 1772121199051,
+    "title": "Fellowship Meal after Service ",
+    "date": "2026-03-22",
+    "time": "",
+    "location": "",
+    "type": "fellowship",
+    "description": "Fellowship Meal Potluck after service. "
   }
 ]

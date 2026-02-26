@@ -160,5 +160,23 @@
     "location": "",
     "type": "fellowship",
     "description": "Fellowship Meal Potluck after service. "
+  },
+  {
+    "id": 1772121263725,
+    "title": "Good Friday Psalm Sing",
+    "date": "2026-04-03",
+    "time": "",
+    "location": "The Rev's",
+    "type": "special",
+    "description": "Time and details TBA."
+  },
+  {
+    "id": 1772121266790,
+    "title": "Good Friday Psalm Sing",
+    "date": "2026-04-03",
+    "time": "",
+    "location": "The Rev's",
+    "type": "special",
+    "description": "Time and details TBA."
   }
 ]

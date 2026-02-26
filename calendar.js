@@ -468,6 +468,30 @@ class CalendarManager {
         }
     }
 
+    // Get Sunday date string (YYYY-MM-DD) for the week containing the given date
+    getWeekSunday(dateString) {
+        const [y, m, d] = dateString.split('-').map(Number);
+        const date = new Date(y, m - 1, d);
+        const dayOfWeek = date.getDay();
+        const sunday = new Date(date);
+        sunday.setDate(date.getDate() - dayOfWeek);
+        return `${sunday.getFullYear()}-${String(sunday.getMonth() + 1).padStart(2, '0')}-${String(sunday.getDate()).padStart(2, '0')}`;
+    }
+
+    // Check if a week (identified by any date in it) has a Parish Week event
+    weekHasParishWeek(weekSunday) {
+        const [y, m, d] = weekSunday.split('-').map(Number);
+        const sunday = new Date(y, m - 1, d);
+        for (let i = 0; i < 7; i++) {
+            const checkDate = new Date(sunday);
+            checkDate.setDate(sunday.getDate() + i);
+            const dateStr = `${checkDate.getFullYear()}-${String(checkDate.getMonth() + 1).padStart(2, '0')}-${String(checkDate.getDate()).padStart(2, '0')}`;
+            const hasParishWeek = this.events.some(e => e.type === 'parishweek' && e.date === dateStr);
+            if (hasParishWeek) return true;
+        }
+        return false;
+    }
+
     renderCalendar() {
         const monthNames = [
             'January', 'February', 'March', 'April', 'May', 'June',
@@ -490,49 +514,49 @@ class CalendarManager {
         const calendarDays = document.getElementById('calendar-days');
         calendarDays.innerHTML = '';
 
+        let cellsInRow = 0;
+        let firstDateInRow = null;
+
         // Add empty cells for days before the first day of the month
         for (let i = 0; i < startingDayOfWeek; i++) {
             const emptyDay = document.createElement('div');
             emptyDay.className = 'calendar-day empty-day';
             calendarDays.appendChild(emptyDay);
+            cellsInRow++;
         }
 
         // Add days of the month
         for (let day = 1; day <= daysInMonth; day++) {
+            const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            if (firstDateInRow === null) firstDateInRow = dateString;
+
             const dayElement = document.createElement('div');
             dayElement.className = 'calendar-day';
             dayElement.textContent = day;
 
-            // Check if this day has events
-            const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            const dayEvents = this.events.filter(event => event.date === dateString);
+            // Check if this day has events (exclude parishweek - those show as week bar)
+            const dayEvents = this.events.filter(event => event.date === dateString && event.type !== 'parishweek');
             
             // Sort events by time (earliest first)
             dayEvents.sort((a, b) => {
-                // Handle events without time (put them at the end)
                 if (!a.time && !b.time) return 0;
                 if (!a.time) return 1;
                 if (!b.time) return -1;
-                
-                // Compare times
                 return a.time.localeCompare(b.time);
             });
 
             if (dayEvents.length > 0) {
                 dayElement.classList.add('has-events');
                 
-                // Show only first 3 events, add "more" indicator if there are more
                 const maxVisibleEvents = 3;
                 const visibleEvents = dayEvents.slice(0, maxVisibleEvents);
                 const hasMoreEvents = dayEvents.length > maxVisibleEvents;
                 
-                // Add event type indicators with proper spacing
                 visibleEvents.forEach((event, index) => {
                     const eventIndicator = document.createElement('div');
                     eventIndicator.className = `event-type-indicator ${event.type || 'special'}`;
-                    eventIndicator.style.top = `${2 + (index * 1.5)}rem`; // Stack events vertically
+                    eventIndicator.style.top = `${2 + (index * 1.5)}rem`;
                     
-                    // Set text based on event type
                     let typeText = '';
                     switch(event.type) {
                         case 'fellowship':
@@ -554,7 +578,6 @@ class CalendarManager {
                     dayElement.appendChild(eventIndicator);
                 });
 
-                // Add "more events" indicator if there are additional events
                 if (hasMoreEvents) {
                     const moreIndicator = document.createElement('div');
                     moreIndicator.className = 'more-events-indicator';
@@ -563,19 +586,57 @@ class CalendarManager {
                     dayElement.appendChild(moreIndicator);
                 }
 
-                // Add click handler for all users to see events
                 dayElement.addEventListener('click', () => {
                     this.showDayEvents(dayEvents, dateString);
                 });
+            } else {
+                const allDayEvents = this.events.filter(e => e.date === dateString);
+                if (allDayEvents.length > 0) {
+                    dayElement.addEventListener('click', () => {
+                        this.showDayEvents(allDayEvents, dateString);
+                    });
+                }
             }
 
-            // Highlight today
             const today = new Date();
             if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
                 dayElement.classList.add('today');
             }
 
             calendarDays.appendChild(dayElement);
+            cellsInRow++;
+
+            // End of row - add Parish Week bar if applicable
+            if (cellsInRow === 7) {
+                const weekSunday = this.getWeekSunday(firstDateInRow);
+                if (this.weekHasParishWeek(weekSunday)) {
+                    const parishBar = document.createElement('div');
+                    parishBar.className = 'parish-week-bar';
+                    parishBar.textContent = 'Parish Week';
+                    parishBar.setAttribute('aria-label', 'Parish Week');
+                    calendarDays.appendChild(parishBar);
+                }
+                cellsInRow = 0;
+                firstDateInRow = null;
+            }
+        }
+
+        // Fill remaining cells in last row and add parish bar if needed
+        if (cellsInRow > 0) {
+            const weekSunday = firstDateInRow ? this.getWeekSunday(firstDateInRow) : null;
+            while (cellsInRow < 7) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty-day';
+                calendarDays.appendChild(emptyDay);
+                cellsInRow++;
+            }
+            if (weekSunday && this.weekHasParishWeek(weekSunday)) {
+                const parishBar = document.createElement('div');
+                parishBar.className = 'parish-week-bar';
+                parishBar.textContent = 'Parish Week';
+                parishBar.setAttribute('aria-label', 'Parish Week');
+                calendarDays.appendChild(parishBar);
+            }
         }
     }
 
@@ -603,6 +664,9 @@ class CalendarManager {
                     break;
                 case 'parishgroups':
                     typeText = 'Parish Groups';
+                    break;
+                case 'parishweek':
+                    typeText = 'Parish Week';
                     break;
                 case 'special':
                 default:

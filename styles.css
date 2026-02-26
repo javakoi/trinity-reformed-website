@@ -1828,6 +1828,16 @@ body {
     background-color: #800000;
 }
 
+.parish-week-bar {
+    grid-column: 1 / -1;
+    background-color: #800020;
+    color: white;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
 .more-events-indicator {
     position: absolute;
     left: 0.3rem;
@@ -1927,6 +1937,10 @@ body {
 
 .event-type-badge.parishgroups {
     background-color: #800000;
+}
+
+.event-type-badge.parishweek {
+    background-color: #800020;
 }
 
 .day-event-actions {

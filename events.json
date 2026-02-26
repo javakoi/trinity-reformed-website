@@ -178,5 +178,14 @@
     "location": "",
     "type": "parishweek",
     "description": "POCs: McMaster, Suber, VB"
+  },
+  {
+    "id": 1772122151447,
+    "title": "Parish Week",
+    "date": "2026-03-15",
+    "time": "",
+    "location": "",
+    "type": "parishweek",
+    "description": "POCs: McMaster, Suber, VB"
   }
 ]

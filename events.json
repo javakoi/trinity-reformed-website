@@ -94,7 +94,7 @@
     "title": "Sabbath Meal/Psalm Sing",
     "date": "2026-02-28",
     "time": "16:00",
-    "location": "The Rev’s",
+    "location": "The Revâs",
     "type": "special",
     "description": ""
   },
@@ -142,5 +142,14 @@
     "location": "The Suber Household",
     "type": "special",
     "description": "Info for the meeting was sent out via email from Pastor Grant. \nAssigned reading and audio for discussion & activities. \nPOC: Pastor Grant"
+  },
+  {
+    "id": 1772121038801,
+    "title": "Parish Week",
+    "date": "2026-03-01",
+    "time": "",
+    "location": "",
+    "type": "parishweek",
+    "description": "POCs: McMaster, Suber, VB"
   }
 ]
